@@ -3,8 +3,21 @@ const DAYS = ["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Doming
 let _id = 1;
 const p = (entity,day,cat,desc,tope,cond) => ({id:_id++,entity,day,category:cat,description:desc,tope,conditions:cond,source:"preloaded"});
 
-// ── PROMOS JULIO 2026 (verificadas con fuentes web) ──
+// ── PROMOS JULIO 2026 (verificadas con fuentes web + mails MODO) ──
 export const PROMOS = [
+  // ══ MODO (julio 2026) ══
+  p("modo",1,"Supermercados","20% en Jumbo","$25.000/banco/mes","Mar y Jue · Mín $100.000 · QR presencial y online · Hasta 31/7"),
+  p("modo",3,"Supermercados","20% en Jumbo","$25.000/banco/mes","Mar y Jue · Mín $100.000 · QR presencial y online · Hasta 31/7"),
+  p("modo",4,"Supermercados","20% en Disco","$25.000/banco/mes","Vie y Sáb · Mín $100.000 · QR presencial y online · Hasta 31/7"),
+  p("modo",5,"Supermercados","20% en Disco","$25.000/banco/mes","Vie y Sáb · Mín $100.000 · QR presencial y online · Hasta 31/7"),
+  p("modo",4,"Supermercados","20% en Vea","$25.000/banco/mes","Solo Viernes · Mín $100.000 · QR o botón de pago · Hasta 31/7"),
+  p("modo",4,"Supermercados","20% en Supermercados de Córdoba","$15.000/banco/mes","Viernes · QR presencial · Hasta 31/7"),
+  p("modo",2,"Supermercados","20% en Cooperativa Obrera","$15.000/banco/mes","Miércoles · Sucursales seleccionadas · QR · Hasta 31/7"),
+  p("modo",0,"Supermercados","20% en Kilbel","$10.000/usuario/mes","Lunes · Mín $50.000 · QR presencial · Hasta 31/7"),
+  p("modo",4,"Supermercados","20% en Supermercados Federal","$15.000/banco/mes","Viernes · QR presencial · Hasta 31/7"),
+  p("modo",2,"Combustible","20% en YPF (Banco Macro vía MODO)","$15.000/mes","Miércoles · Visa crédito · Selecta 30% tope $20.000"),
+  p("modo",4,"Combustible","10-15% en YPF (Galicia vía MODO)","$10.000-15.000","Viernes · MC crédito · Éminent 15%"),
+
   // ══ SANTANDER ══
   p("santander",3,"Combustible","15% en YPF (Sorpresa Santander)","$10.000","Jueves · Solo App YPF · Visa crédito/débito"),
   p("santander",5,"Supermercados","20% en Diarco con QR","Sin tope","Sáb y Dom · QR App Santander"),
@@ -36,10 +49,6 @@ export const PROMOS = [
   p("mercadopago",2,"Combustible","10% en Dapsa con QR","$5.000","Miércoles · Cargas > $50.000"),
   ...DAYS.map((_,i) => p("mercadopago",i,"Supermercados","Descuentos en Carrefour, Coto, Día con billetera","Varía","Ver app MP · Todos los días")),
 
-  // ══ MODO (genérico bancos adheridos) ══
-  p("modo",2,"Combustible","20% en YPF (Banco Macro vía MODO)","$15.000/mes","Miércoles · Visa crédito · Selecta 30%"),
-  p("modo",4,"Combustible","10-15% en YPF (Galicia vía MODO)","$10.000-15.000","Viernes · MC crédito · Éminent 15%"),
-
   // ══ PERSONAL PAY ══
   p("personalpay",5,"Combustible","10% en Puma Energy","$4.000/carga","Sábados · Máx 2 cargas/mes · Julio y agosto"),
 
@@ -62,5 +71,4 @@ export const PROMOS = [
   p("bancon",4,"Farmacia","20% en farmacias adheridas","$3.000","Viernes · Débito"),
 ];
 
-// Alias para compatibilidad con imports existentes
 export const JUNE_PROMOS = PROMOS;
