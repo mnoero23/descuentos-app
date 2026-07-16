@@ -6,10 +6,13 @@ const p = (entity,day,cat,desc,tope,cond) => ({id:_id++,entity,day,category:cat,
 // ── PROMOS JULIO 2026 (verificadas con fuentes web + mails MODO) ──
 export const PROMOS = [
   // ══ MODO (julio 2026) ══
+  p("modo",4,"Supermercados","20% en Día","$20.000/banco/mes","Vie y Sáb · Mín $35.000 · +10% extra BNA+ (tope $5.000/mes)"),
+  p("modo",5,"Supermercados","20% en Día","$20.000/banco/mes","Vie y Sáb · Mín $35.000 · +10% extra BNA+ (tope $5.000/mes)"),
+  p("modo",0,"Supermercados","20% en ChangoMás","$25.000/banco/mes","Lunes · Mín $75.000 · +10% extra BNA+ (tope $5.000/mes)"),
   p("modo",1,"Supermercados","20% en Jumbo","$25.000/banco/mes","Mar y Jue · Mín $100.000 · QR presencial y online · Hasta 31/7"),
   p("modo",3,"Supermercados","20% en Jumbo","$25.000/banco/mes","Mar y Jue · Mín $100.000 · QR presencial y online · Hasta 31/7"),
-  p("modo",4,"Supermercados","20% en Disco","$25.000/banco/mes","Vie y Sáb · Mín $100.000 · QR presencial y online · Hasta 31/7"),
-  p("modo",5,"Supermercados","20% en Disco","$25.000/banco/mes","Vie y Sáb · Mín $100.000 · QR presencial y online · Hasta 31/7"),
+  p("modo",4,"Supermercados","20% en Disco","$25.000/banco/mes","Vie y Sáb · Mín $100.000 · +10% extra BNA+ (tope $5.000/mes)"),
+  p("modo",5,"Supermercados","20% en Disco","$25.000/banco/mes","Vie y Sáb · Mín $100.000 · +10% extra BNA+ (tope $5.000/mes)"),
   p("modo",4,"Supermercados","20% en Vea","$25.000/banco/mes","Solo Viernes · Mín $100.000 · QR o botón de pago · Hasta 31/7"),
   p("modo",4,"Supermercados","20% en Supermercados de Córdoba","$15.000/banco/mes","Viernes · QR presencial · Hasta 31/7"),
   p("modo",2,"Supermercados","20% en Cooperativa Obrera","$15.000/banco/mes","Miércoles · Sucursales seleccionadas · QR · Hasta 31/7"),
