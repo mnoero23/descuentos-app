@@ -18,7 +18,7 @@ const ENTITIES=[
 const CATEGORIES=["Supermercados","Combustible","Farmacia","Gastronomía","Indumentaria","Electro","Entretenimiento","Viajes","Otros"];
 
 // Clave de storage con versión — al cambiar la data precargada, subí la versión para invalidar el caché viejo
-const STORAGE_KEY = "descuentos-v3";
+const STORAGE_KEY = "descuentos-v";
 
 const ls={load(k){try{const d=localStorage.getItem(k);return d?JSON.parse(d):null}catch{return null}},save(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch{}}};
 

@@ -1,77 +1,91 @@
-const DAYS = ["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"];
+// promos.js — Actualizado 30/07/2026
+// Fuentes: sitios oficiales de cada entidad (Santander, BBVA, Bancor, BNA, Personal Pay,
+// Claro Pay, Ualá, Brubank, Naranja X, MODO) + sitioandino.com.ar, calcularsueldo.com.ar,
+// iproup.com, cronista.com, iprofesional.com, perfil.com (relevamiento julio 2026).
+// Sin conector de Gmail activo en esta sesión, no se revisaron mails.
 
+const DAYS = ["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"];
 let _id = 1;
 const p = (entity,day,cat,desc,tope,cond) => ({id:_id++,entity,day,category:cat,description:desc,tope,conditions:cond,source:"preloaded"});
 
-// ── PROMOS JULIO 2026 (verificadas con fuentes web + mails MODO) ──
 export const PROMOS = [
-  // ══ MODO (julio 2026) ══
-  p("modo",4,"Supermercados","20% en Día","$20.000/banco/mes","Vie y Sáb · Mín $35.000 · +10% extra BNA+ (tope $5.000/mes)"),
-  p("modo",5,"Supermercados","20% en Día","$20.000/banco/mes","Vie y Sáb · Mín $35.000 · +10% extra BNA+ (tope $5.000/mes)"),
-  p("modo",0,"Supermercados","20% en ChangoMás","$25.000/banco/mes","Lunes · Mín $75.000 · +10% extra BNA+ (tope $5.000/mes)"),
-  p("modo",1,"Supermercados","20% en Jumbo","$25.000/banco/mes","Mar y Jue · Mín $100.000 · QR presencial y online · Hasta 31/7"),
-  p("modo",3,"Supermercados","20% en Jumbo","$25.000/banco/mes","Mar y Jue · Mín $100.000 · QR presencial y online · Hasta 31/7"),
-  p("modo",4,"Supermercados","20% en Disco","$25.000/banco/mes","Vie y Sáb · Mín $100.000 · +10% extra BNA+ (tope $5.000/mes)"),
-  p("modo",5,"Supermercados","20% en Disco","$25.000/banco/mes","Vie y Sáb · Mín $100.000 · +10% extra BNA+ (tope $5.000/mes)"),
-  p("modo",4,"Supermercados","20% en Vea","$25.000/banco/mes","Solo Viernes · Mín $100.000 · QR o botón de pago · Hasta 31/7"),
-  p("modo",4,"Supermercados","20% en Supermercados de Córdoba","$15.000/banco/mes","Viernes · QR presencial · Hasta 31/7"),
-  p("modo",2,"Supermercados","20% en Cooperativa Obrera","$15.000/banco/mes","Miércoles · Sucursales seleccionadas · QR · Hasta 31/7"),
-  p("modo",0,"Supermercados","20% en Kilbel","$10.000/usuario/mes","Lunes · Mín $50.000 · QR presencial · Hasta 31/7"),
-  p("modo",4,"Supermercados","20% en Supermercados Federal","$15.000/banco/mes","Viernes · QR presencial · Hasta 31/7"),
-  p("modo",2,"Combustible","20% en YPF (Banco Macro vía MODO)","$15.000/mes","Miércoles · Visa crédito · Selecta 30% tope $20.000"),
-  p("modo",4,"Combustible","10-15% en YPF (Galicia vía MODO)","$10.000-15.000","Viernes · MC crédito · Éminent 15%"),
 
-  // ══ SANTANDER ══
-  p("santander",3,"Combustible","15% en YPF (Sorpresa Santander)","$10.000","Jueves · Solo App YPF · Visa crédito/débito"),
-  p("santander",5,"Supermercados","20% en Diarco con QR","Sin tope","Sáb y Dom · QR App Santander"),
-  p("santander",6,"Supermercados","20% en Diarco con QR","Sin tope","Sáb y Dom · QR App Santander"),
-  p("santander",1,"Farmacia","25% en Farmacity + 3 CSI","$15.000","Martes"),
-  ...DAYS.map((_,i) => p("santander",i,"Otros","10% en Yenny + 6 CSI","$20.000","Todos los días")),
+  // ============ SANTANDER ============
+  p("santander",0,"Supermercados","20% en Changomás","$25.000","Lunes · Compra mínima $75.000 · Presencial y online · Vigente hasta 31/07/2026"),
+  p("santander",3,"Supermercados","30% en Coto","Sin tope","Jueves · Compra mínima $100.000 · Exclusivo pago sin contacto (Apple Pay / Google Pay) · Vigente hasta 31/07/2026"),
+  ...[5,6].map(d => p("santander",d,"Supermercados","20% en Diarco","Sin tope","Sábado y domingo · Pago con QR desde App Santander")),
+  ...DAYS.map((_,d) => p("santander",d,"Otros","10% en Yenny + 6 cuotas sin interés","$20.000","Todos los días · Librería")),
+  p("santander",1,"Farmacia","25% en Farmacity + 3 cuotas sin interés","$15.000","Martes"),
+  ...DAYS.map((_,d) => p("santander",d,"Entretenimiento","2x1 en entradas Cinépolis","Sin tope","Todos los días · Visa débito o crédito")),
 
-  // ══ BNA (julio 2026) ══
-  p("bna",0,"Supermercados","20% en ChangoMás + 10% extra BNA","$25.000/mes + $5.000","Compra mín $75.000 · BNA+ MODO"),
-  p("bna",1,"Supermercados","20% en Jumbo","$25.000/mes","Mar y Jue · Mín $100.000 · Visa BNA+ MODO · Hasta 31/7"),
-  p("bna",3,"Supermercados","20% en Jumbo","$25.000/mes","Mar y Jue · Mín $100.000 · Visa BNA+ MODO · Hasta 31/7"),
-  p("bna",2,"Supermercados","30% en Carrefour","$12.000/sem","Miércoles · MODO BNA+ · Tope semanal renovable"),
-  p("bna",3,"Supermercados","20% en Mayorista Nini","$20.000/mes","Jueves"),
-  p("bna",5,"Supermercados","20% en Día","$20.000","Sábados · Mín $35.000"),
-  p("bna",5,"Supermercados","20% en Disco","$25.000","Sábados · Mín $100.000 · +10% extra BNA tope $5.000"),
-  p("bna",5,"Supermercados","20% en La Anónima","$15.000","Sábados · Mín $50.000 · +5% extra BNA tope $5.000"),
-  p("bna",5,"Supermercados","20% en Diarco Barrio","Sin tope","Todo el finde · Mín $35.000"),
-  p("bna",6,"Supermercados","20% en Diarco Barrio","Sin tope","Todo el finde · Mín $35.000"),
-  ...[0,1,2,3,4].map(d => p("bna",d,"Supermercados","5% jubilados en súpers adheridos","$5.000/sem · $20.000/mes","Lun-Vie · Cobro haberes BNA · BNA+ MODO · Acumulable")),
-  p("bna",4,"Combustible","20% en YPF","$10.000/mes","Viernes · Visa/MC vía MODO BNA+"),
-  p("bna",4,"Combustible","20% en Shell","$10.000/mes","Viernes · Visa/MC vía MODO"),
-  p("bna",4,"Combustible","20% en Axion","$10.000/mes","Viernes · MODO BNA+ · Hasta 31/8"),
-  p("bna",0,"Farmacia","3 CSI en farmacias","Sin tope","Lunes · Visa crédito BNA MODO"),
+  // ============ BBVA ============
+  ...DAYS.map((_,d) => p("bbva",d,"Supermercados","Reintegro en Jumbo, Vea y Disco pagando con QR MODO (App BBVA)","Consultar tope","Vigente 01/07/2026 al 31/07/2026 · Requiere caja de ahorro en pesos activa en BBVA")),
+  ...DAYS.map((_,d) => p("bbva",d,"Supermercados","20% en supermercados y combustible (paquete Black+ All)","$100.000/mes (compartido con combustible)","Todos los días · Exclusivo NFC con Visa Signature BBVA Black+ (Apple Pay / Google Pay / MODO NFC)")),
+  ...DAYS.map((_,d) => p("bbva",d,"Combustible","20% en estaciones de servicio (paquete Black+ All)","$100.000/mes (compartido con supermercados)","Todos los días · Exclusivo NFC con Visa Signature BBVA Black+")),
+  ...DAYS.map((_,d) => p("bbva",d,"Gastronomía","20% en La Cabrera, La Parolaccia y Dandy","$50.000/mes","Todos los días · Pago con celular vía NFC · Vigente 01/07/2026 al 31/07/2026")),
 
-  // ══ MERCADO PAGO ══
-  p("mercadopago",4,"Supermercados","10% en Makro","$10.000/mes","Vie y Sáb · Dinero en cuenta MP"),
-  p("mercadopago",5,"Supermercados","10% en Makro","$10.000/mes","Vie y Sáb · Dinero en cuenta MP"),
-  p("mercadopago",3,"Combustible","10% en Gulf con QR","$6.000","Jueves · Cargas > $50.000"),
-  p("mercadopago",2,"Combustible","10% en Dapsa con QR","$5.000","Miércoles · Cargas > $50.000"),
-  ...DAYS.map((_,i) => p("mercadopago",i,"Supermercados","Descuentos en Carrefour, Coto, Día con billetera","Varía","Ver app MP · Todos los días")),
+  // ============ BANCOR ============
+  ...[4,5].map(d => p("bancor",d,"Gastronomía","20% de ahorro (25% Premier/Black/Signature) con tarjeta Cordobesa","$30.000 ($50.000 Premier/Black/Signature)","Viernes y sábado · Vigente durante julio 2026")),
+  ...DAYS.map((_,d) => p("bancor",d,"Otros","Hasta 20% de reintegro con Bezza en gastronomía, panaderías, librerías, peajes, almacenes, bares y carnicerías","$3.000 por compra","Todos los días · Billetera digital Bezza")),
+  ...DAYS.map((_,d) => p("bancor",d,"Supermercados","30% de ahorro canjeando puntos Club Bancor","Según canje","Todos los días · Programa de puntos Club Bancor, válido en Córdoba")),
+  ...[0,1,3].map(d => p("bancor",d,"Entretenimiento","Descuento en Cines Dino (Alto Verde, Ruta 20, Salsipuedes, Alta Gracia, 60 Cuadras)","Consultar","Lunes, martes y jueves · Tarjeta Cordobesa")),
 
-  // ══ PERSONAL PAY ══
-  p("personalpay",5,"Combustible","10% en Puma Energy","$4.000/carga","Sábados · Máx 2 cargas/mes · Julio y agosto"),
+  // ============ BNA (Banco Nación / BNA+ MODO) ============
+  p("bna",0,"Supermercados","20% en Changomás","$25.000","Lunes · Compra mínima $75.000 · Pago con Visa crédito/débito vía BNA+ MODO · Vigente hasta 31/07/2026"),
+  ...[1,3].map(d => p("bna",d,"Supermercados","20% en Jumbo","$25.000","Martes y jueves · Compra mínima $100.000 · BNA+ MODO · Vigente hasta 31/07/2026")),
+  ...[4,5].map(d => p("bna",d,"Supermercados","20% en Vea","$25.000","Viernes y sábado · Compra mínima $100.000 · BNA+ MODO · Vigente hasta 31/07/2026")),
+  p("bna",3,"Supermercados","20% en Makro","$20.000","Jueves · BNA+ MODO · Vigente hasta 31/07/2026"),
+  p("bna",4,"Combustible","20% en YPF, Axion y Shell","$10.000","Viernes · Pago con Visa crédito vía BNA+ MODO · Vigente hasta 31/08/2026"),
+  p("bna",0,"Farmacia","Hasta 3 cuotas sin interés + 10% adicional jubilados","Sin tope","Lunes · Farmacity, Farmacia del Puente y adheridas · Pago con Visa crédito vía BNA+ MODO"),
+  p("bna",3,"Otros","Hasta 3 cuotas sin interés y 10% en ópticas adheridas","Sin tope","Jueves · Pago con tarjeta de crédito vía BNA+ MODO"),
+  ...DAYS.map((_,d) => p("bna",d,"Otros","10% + 3 cuotas sin interés en veterinarias","Sin tope","Todos los días · Visa crédito vía BNA+ · Vigente hasta 31/08/2026")),
 
-  // ══ NARANJA X ══
-  p("naranjax",5,"Combustible","10% en Gulf","$3.000/compra","Sáb y Dom · Tarjeta crédito NX"),
-  p("naranjax",6,"Combustible","10% en Gulf","$3.000/compra","Sáb y Dom · Tarjeta crédito NX"),
+  // ============ PERSONAL PAY ============
+  p("personalpay",3,"Supermercados","25% en ChangoMás y DIA (Súper Jueves de Ahorro)","$15.000","Jueves · Pago con Visa Personal Pay vía NFC (Android)"),
+  ...[3,4].map(d => p("personalpay",d,"Supermercados","25% en Diarco","Consultar tope","Jueves y viernes · Pago con tarjeta Visa Personal Pay")),
+  p("personalpay",5,"Combustible","10% en carga de combustible Puma Energy (Súper, Premium, Ion Diesel)","$4.000 por transacción","Sábados · Requiere app Puma Pris + pago con Visa Personal Pay · Máximo 2 cargas por mes · Vigente julio y agosto 2026"),
 
-  // ══ BRUBANK ══
-  ...DAYS.map((_,i) => p("brubank",i,"Combustible","10% en YPF (hasta 30% Ultra)","$2.000-6.000/sem según plan","Débito · General/Bruplus/Ultra")),
-  p("brubank",5,"Combustible","Hasta 30% en Axion (Ultra)","$6.000/transacción","Fines de semana · Plan Ultra"),
-  p("brubank",6,"Combustible","Hasta 30% en Axion (Ultra)","$6.000/transacción","Fines de semana · Plan Ultra"),
+  // ============ CLARO PAY ============
+  ...DAYS.map((_,d) => p("claropay",d,"Electro","20% off + 10% cashback en equipos y accesorios (Tienda Online / Centros de Atención)","Consultar tope","Todos los días · Pago con Claro Pay en un solo pago (crédito, débito o saldo en cuenta) · Vigente 01/07/2026 al 31/07/2026")),
+  ...DAYS.map((_,d) => p("claropay",d,"Otros","10% cashback en el pago de la factura Claro","1 factura por mes","Todos los días · Cashback automático, primer pago del mes")),
 
-  // ══ UALÁ ══
-  ...DAYS.map((_,i) => p("uala",i,"Otros","Reintegro transporte (subte/colectivo)","$15.000/mes c/u","Prepaga o crédito Ualá")),
+  // ============ UALÁ ============
+  p("uala",0,"Supermercados","25% en COTO (tarjeta de crédito o prepaga)","$15.000/mes","Lunes"),
+  p("uala",0,"Supermercados","25% en Carrefour Express pagando con NFC (15% con tarjeta física)","$8.000 semanal (NFC) / $3.000 semanal (física)","Lunes"),
+  p("uala",1,"Supermercados","25% en Jumbo, Vea y Disco pagando con NFC (15% con tarjeta física)","$8.000 semanal (NFC) / $6.000 semanal (física)","Martes"),
+  p("uala",5,"Farmacia","25% en Farmacity, Simplicity y Get the Look","$10.000/mes","Sábados · Cualquier tarjeta Ualá"),
+  ...[5,6].map(d => p("uala",d,"Gastronomía","30% en restaurantes, fast food, cervecerías y cafeterías","$7.500 semanal","Sábado y domingo · Pago con NFC (Apple Pay / Google Pay)")),
+  ...DAYS.map((_,d) => p("uala",d,"Otros","Hasta 100% de reintegro en viajes de subte y colectivo","Consultar tope","Todos los días · Pago desde el celular")),
 
-  // ══ BBVA ══
-  p("bbva",4,"Gastronomía","Descuentos gastro fin de semana","Varía","Consultar app BBVA"),
+  // ============ BRUBANK ============
+  p("brubank",4,"Farmacia","20% en Farmacity, Simplicity, Get the Look y The Food Market","Consultar tope","Viernes · Tarjeta débito Visa Brubank · Vigente 01/07/2026 al 31/07/2026"),
+  p("brubank",1,"Combustible","10% en Axion Energy","$2.000 semanal","Martes · Tarjeta débito Visa Brubank · Vigente 01/07/2026 al 31/07/2026"),
+  ...DAYS.map((_,d) => p("brubank",d,"Gastronomía","40% en Cervelar","Consultar tope","Todos los días · Clientes con Plan Ultra · Tarjeta débito o crédito Visa Brubank · Vigente 01/07/2026 al 31/07/2026")),
 
-  // ══ BANCON ══
-  p("bancon",4,"Farmacia","20% en farmacias adheridas","$3.000","Viernes · Débito"),
+  // ============ MERCADO PAGO ============
+  p("mercadopago",2,"Supermercados","10% en Día","Sin tope","Miércoles · Pago con QR, dinero disponible"),
+  p("mercadopago",2,"Supermercados","15% en Don Ángel","Sin tope","Miércoles · Pago con QR"),
+  p("mercadopago",3,"Supermercados","15% en Carrefour","Sin tope","Jueves · Pago con QR"),
+  p("mercadopago",4,"Supermercados","25% en Coto","Sin tope","Viernes · Pago con QR (dinero en cuenta, débito o crédito)"),
+  ...[4,5].map(d => p("mercadopago",d,"Supermercados","10% en Makro","Sin tope","Viernes y sábado · Pago con dinero disponible")),
+  p("mercadopago",5,"Supermercados","20% en Coto","Sin tope","Sábado · Fin de semana"),
+  p("mercadopago",6,"Supermercados","20% en Coto","Sin tope","Domingo · Fin de semana"),
+  p("mercadopago",6,"Supermercados","15% en Don Ángel","Sin tope","Domingo"),
+  p("mercadopago",2,"Farmacia","10% en Farmacity","$2.500 por día","Miércoles · Pago sin contacto con tarjeta prepaga Mercado Pago"),
+  ...[4,5,6].map(d => p("mercadopago",d,"Otros","40% en kioscos Open25","$4.000 por día","Viernes, sábado y domingo · Pago sin contacto con tarjeta prepaga Mercado Pago")),
+
+  // ============ NARANJA X ============
+  p("naranjax",3,"Supermercados","15% en Coto pagando con QR","Sin tope","Jueves · Pago con QR desde app Naranja X · Vigente 01/07/2026 al 31/07/2026"),
+  ...[4,5,6].map(d => p("naranjax",d,"Supermercados","15% en HiperChangoMás y ChangoMás pagando con QR de Mercado Pago desde app Naranja X","Sin tope","Viernes a domingo · Excluye carnicería, pescadería, granja y algunos lácteos")),
+  ...[4,5].map(d => p("naranjax",d,"Gastronomía","30% de reintegro pagando con QR (dinero en cuenta)","$15.000/mes","Viernes y sábado · Vigente 01/07/2026 al 31/07/2026")),
+  p("naranjax",1,"Supermercados","25% Plan Turbo / 30% Plan Épico en Jumbo, Disco, Vea, Libertad, Chango Más, Carrefour, Día, La Anónima y Coto","$8.000 semanal (Turbo) / $10.000 semanal (Épico)","Martes · Tarjeta de crédito física o débito Naranja X"),
+  ...[5,6].map(d => p("naranjax",d,"Combustible","10% en estaciones Gulf","$3.000 por transacción","Sábado y domingo · Tarjeta de crédito Naranja X")),
+
+  // ============ MODO ============
+  p("modo",3,"Supermercados","20% de reintegro (multi-banco vía MODO)","$20.000 (aprox. compra $100.000)","Jueves · Vinculando la cuenta bancaria a MODO · Verificar bancos adheridos vigentes"),
+  ...DAYS.map((_,d) => p("modo",d,"Otros","50% extra de reintegro en transporte público (QR Transporte)","Consultar tope","Todos los días · Vigente hasta 31/07/2026")),
+  p("modo",4,"Combustible","Descuento en Axion Energy pagando con QR (Banca Credicoop o MODO, Tarjetas Credicoop)","$2.000 semanal","Viernes · Vigente durante julio 2026"),
+
 ];
 
-export const JUNE_PROMOS = PROMOS;
+export const JUNE_PROMOS = PROMOS; // alias de compatibilidad
