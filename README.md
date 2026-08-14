@@ -1,40 +1,46 @@
-# 🏷️ Descuentos del Día - Argentina
+# Descuentos del Día — Argentina
 
-App para ver promociones y descuentos de bancos y billeteras virtuales, organizados por día de la semana.
+Aplicación web para explorar promociones de bancos y billeteras virtuales por día, entidad y categoría.
 
-## Entidades incluidas
-Mercado Pago, MODO, Brubank, Naranja X, Personal Pay, Santander Río, BBVA, BANCON, Ualá, BNA
+[Ver demo en Vercel](https://descuentos-app-theta.vercel.app)
 
-## Deploy rápido en Vercel
+## Problema que resuelve
 
-### 1. Subir a GitHub
+Las promociones financieras suelen estar dispersas entre sitios, aplicaciones y comunicaciones comerciales. Este proyecto las reúne en una interfaz única para facilitar una decisión cotidiana: **qué medio de pago conviene usar hoy**.
 
-```bash
-cd descuentos-app
-git init
-git add .
-git commit -m "Initial commit"
-gh repo create descuentos-del-dia --public --push
+## Funcionalidades
+
+- Navegación por día de la semana.
+- Filtros por entidad y categoría.
+- Tarjetas con beneficio, tope y condiciones.
+- Alta y eliminación local de promociones.
+- Persistencia en el navegador mediante `localStorage`.
+- Actualización opcional con IA mediante una función serverless.
+- Diseño responsive desplegado en Vercel.
+
+## Entidades contempladas
+
+Mercado Pago, MODO, Brubank, Naranja X, Personal Pay, Santander, BBVA, Bancor, Claro Pay, Ualá y Banco Nación.
+
+## Arquitectura
+
+```text
+React + Vite
+├── src/App.jsx            interfaz, filtros y estado
+├── src/promos.js          promociones precargadas
+└── api/search-promos.js   función serverless para actualización opcional
 ```
 
-### 2. Conectar con Vercel
+La clave de Anthropic permanece del lado del servidor como variable de entorno y no se expone al navegador.
 
-1. Andá a [vercel.com](https://vercel.com) y creá una cuenta con tu GitHub
-2. Click en **"Add New Project"**
-3. Importá el repo `descuentos-del-dia`
-4. Vercel detecta Vite automáticamente — dejá todo como está
-5. Click **"Deploy"**
+## Tecnologías
 
-### 3. Configurar la búsqueda con IA (opcional)
-
-Para que el botón "🔄 Actualizar con IA" funcione:
-
-1. Conseguí una API key de Anthropic en [console.anthropic.com](https://console.anthropic.com)
-2. En el dashboard de Vercel → tu proyecto → **Settings** → **Environment Variables**
-3. Agregá: `ANTHROPIC_API_KEY` = tu key
-4. Hacé un nuevo deploy (o esperá al próximo push)
-
-> Sin esta key, la app funciona igual con las promos precargadas. Solo el auto-fetch no va a andar.
+- React 18
+- Vite 6
+- JavaScript
+- Vercel Functions
+- Anthropic API (opcional)
+- CSS responsive
 
 ## Desarrollo local
 
@@ -43,11 +49,35 @@ npm install
 npm run dev
 ```
 
-Para probar el auto-fetch local, creá un archivo `.env.local`:
-```
-ANTHROPIC_API_KEY=sk-ant-...
+Para generar una versión de producción:
+
+```bash
+npm run build
+npm run preview
 ```
 
-## Actualizar promos
+## Actualización opcional con IA
 
-Editá `src/promos.js` con las promos nuevas y pusheá a GitHub. Vercel redeploya solo.
+La aplicación funciona con los datos precargados aunque no exista una clave de API. Para habilitar la búsqueda opcional en Vercel, configurar:
+
+```text
+ANTHROPIC_API_KEY=<tu_clave>
+```
+
+## Alcance y calidad de los datos
+
+Las promociones incluidas constituyen una **fotografía demostrativa relevada en julio de 2026**. Pueden cambiar, vencer o depender del segmento del cliente. Antes de comprar, se debe validar cada beneficio en la aplicación o el sitio oficial de la entidad.
+
+El uso de IA sirve como asistencia para localizar información; no reemplaza la verificación de vigencia, topes y condiciones.
+
+## Próximas mejoras
+
+- Fuentes oficiales enlazadas por promoción.
+- Fecha de vigencia y estado de verificación.
+- Favoritos y comparación de medios de pago.
+- Proceso automatizado de actualización y revisión.
+- Pruebas unitarias de filtros y normalización.
+
+## Autor
+
+Desarrollado por [Matías Noero](https://github.com/mnoero23) como proyecto de portfolio orientado a productos de datos y automatización.
