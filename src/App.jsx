@@ -11,20 +11,21 @@ const ENTITIES=[
   {id:"personalpay",name:"Personal Pay",color:"#00b4d8",icon:"📱"},
   {id:"santander",name:"Santander Río",color:"#ec0000",icon:"🔴"},
   {id:"bbva",name:"BBVA",color:"#004481",icon:"🔵"},
-  {id:"bancon",name:"BANCON",color:"#1a8c4e",icon:"🟢"},
+  {id:"bancor",name:"Bancor",color:"#1a8c4e",icon:"🟢"},
+  {id:"claropay",name:"Claro Pay",color:"#d71920",icon:"🔷"},
   {id:"uala",name:"Ualá",color:"#7b2d8e",icon:"💳"},
   {id:"bna",name:"BNA",color:"#0072bc",icon:"🏛️"},
 ];
 const CATEGORIES=["Supermercados","Combustible","Farmacia","Gastronomía","Indumentaria","Electro","Entretenimiento","Viajes","Otros"];
 
 // Clave de storage con versión — al cambiar la data precargada, subí la versión para invalidar el caché viejo
-const STORAGE_KEY = "descuentos-v";
+const STORAGE_KEY = "descuentos-v2";
 
 const ls={load(k){try{const d=localStorage.getItem(k);return d?JSON.parse(d):null}catch{return null}},save(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch{}}};
 
 async function fetchAI(names){
   try{
-    const r=await fetch('/api/fetch-promos',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({entityNames:names})});
+    const r=await fetch('/api/search-promos',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({entityNames:names})});
     if(!r.ok)return[];const d=await r.json();return Array.isArray(d.promos)?d.promos:[];
   }catch{return[]}
 }
