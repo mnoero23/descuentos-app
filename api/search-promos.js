@@ -16,7 +16,7 @@ export default async function handler(req, res) {
     const { entityNames } = req.body;
     const today = new Date().toLocaleDateString('es-AR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
 
-    const ENTITIES_MAP = 'Mercado Pago=mercadopago, MODO=modo, Brubank=brubank, Naranja X=naranjax, Personal Pay=personalpay, Santander Río=santander, BBVA=bbva, BANCON=bancon, Ualá=uala, BNA=bna';
+    const ENTITIES_MAP = 'Mercado Pago=mercadopago, MODO=modo, Brubank=brubank, Naranja X=naranjax, Personal Pay=personalpay, Santander Río=santander, BBVA=bbva, Bancor=bancor, Claro Pay=claropay, Ualá=uala, BNA=bna';
     const CATEGORIES = 'Supermercados, Combustible, Farmacia, Gastronomía, Indumentaria, Electro, Entretenimiento, Viajes, Otros';
 
     const response = await fetch('https://api.anthropic.com/v1/messages', {
