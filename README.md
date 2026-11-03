@@ -1,14 +1,22 @@
 # Descuentos del Día — Argentina
 
-Aplicación web para explorar promociones de bancos y billeteras virtuales por día, entidad y categoría.
+**Laboratorio de producto · muestra histórica de julio de 2026**
 
-[Ver demo en Vercel](https://descuentos-app-theta.vercel.app)
+Exploración de una interfaz para reunir promociones de bancos y billeteras virtuales por día, entidad y categoría. El proyecto queda pausado; la idea se retomará más adelante para mejorarla y diseñar una nueva versión.
 
-## Problema que resuelve
+## Demo histórica
 
-Las promociones financieras suelen estar dispersas entre sitios, aplicaciones y comunicaciones comerciales. Este proyecto las reúne en una interfaz única para facilitar una decisión cotidiana: **qué medio de pago conviene usar hoy**.
+[Consultar la demo pública](https://descuentos-app-theta.vercel.app/)
 
-## Funcionalidades
+La demo está publicada como referencia del experimento. Sus promociones no deben usarse para decidir una compra ni considerarse vigentes.
+
+## Estado de la información
+
+Los datos precargados corresponden a un relevamiento de **julio de 2026**. Las condiciones, topes y fechas de vigencia pueden haber cambiado o vencido. La interfaz puede mostrar beneficios antiguos como verificados; esa etiqueta no confirma su vigencia actual.
+
+Antes de aprovechar una promoción, verificá sus condiciones en la aplicación o el sitio oficial de la entidad.
+
+## Qué explora el laboratorio
 
 - Navegación por día de la semana.
 - Filtros por entidad y categoría.
@@ -22,25 +30,9 @@ Las promociones financieras suelen estar dispersas entre sitios, aplicaciones y 
 
 Mercado Pago, MODO, Brubank, Naranja X, Personal Pay, Santander, BBVA, Bancor, Claro Pay, Ualá y Banco Nación.
 
-## Arquitectura
-
-```text
-React + Vite
-├── src/App.jsx            interfaz, filtros y estado
-├── src/promos.js          promociones precargadas
-└── api/search-promos.js   función serverless para actualización opcional
-```
-
-La clave de Anthropic permanece del lado del servidor como variable de entorno y no se expone al navegador.
-
 ## Tecnologías
 
-- React 18
-- Vite 6
-- JavaScript
-- Vercel Functions
-- Anthropic API (opcional)
-- CSS responsive
+React 18 · Vite 6 · JavaScript · Vercel Functions · CSS responsive · Anthropic API (opcional)
 
 ## Desarrollo local
 
@@ -56,28 +48,10 @@ npm run build
 npm run preview
 ```
 
-## Actualización opcional con IA
+## Próxima etapa
 
-La aplicación funciona con los datos precargados aunque no exista una clave de API. Para habilitar la búsqueda opcional en Vercel, configurar:
-
-```text
-ANTHROPIC_API_KEY=<tu_clave>
-```
-
-## Alcance y calidad de los datos
-
-Las promociones incluidas constituyen una **fotografía demostrativa relevada en julio de 2026**. Pueden cambiar, vencer o depender del segmento del cliente. Antes de comprar, se debe validar cada beneficio en la aplicación o el sitio oficial de la entidad.
-
-El uso de IA sirve como asistencia para localizar información; no reemplaza la verificación de vigencia, topes y condiciones.
-
-## Próximas mejoras
-
-- Fuentes oficiales enlazadas por promoción.
-- Fecha de vigencia y estado de verificación.
-- Favoritos y comparación de medios de pago.
-- Proceso automatizado de actualización y revisión.
-- Pruebas unitarias de filtros y normalización.
+Cuando se retome el proyecto, revisar el enfoque y los datos antes de presentar una versión renovada. Las posibles mejoras incluyen fuentes oficiales por promoción, fechas y estados de verificación claros, favoritos y comparación de medios de pago.
 
 ## Autor
 
-Desarrollado por [Matías Noero](https://github.com/mnoero23) como proyecto de portfolio orientado a productos de datos y automatización.
+[Matías Noero](https://github.com/mnoero23)
